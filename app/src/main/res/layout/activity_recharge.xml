@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#847575">
+
+    <!-- 顶栏 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#383737"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--顶栏-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="充值"
+                android:textColor="#FFF"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- body-->
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/linearLayout">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:shrinkColumns="0,1,2"
+            android:stretchColumns="0,1,2">
+
+            <LinearLayout
+                android:id="@+id/editlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <EditText
+                    android:id="@+id/recharge_accounts"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext"
+                    android:gravity="center"
+                    android:hint="输入充值金额"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#FFF"
+                    android:textColorHint="#c1bdbd"
+                    android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/buypswsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext"
+                        android:layout_alignEnd="@+id/recharge_accounts"
+                        android:layout_alignLeft="@+id/recharge_accounts"
+                        android:layout_alignRight="@+id/recharge_accounts"
+                        android:layout_alignStart="@+id/recharge_accounts"
+                        android:layout_below="@+id/recharge_accounts"
+                        android:gravity="center"
+                        android:hint="输入支付密码"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#FFF"
+                        android:textColorHint="#c1bdbd"
+                        android:textSize="20dp" />
+
+
+                    <Button
+                        android:id="@+id/submit_recharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_alignEnd="@+id/buypswsub"
+                        android:layout_alignLeft="@+id/buypswsub"
+                        android:layout_alignRight="@+id/buypswsub"
+                        android:layout_alignStart="@+id/buypswsub"
+                        android:layout_below="@+id/buypswsub"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/indexbuttonselector_"
+                        android:text="充值"
+                        android:textSize="20dp" />
+                    <Button
+                        android:id="@+id/hahahah"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_alignEnd="@+id/submit_recharge"
+                        android:layout_alignLeft="@+id/submit_recharge"
+                        android:layout_alignRight="@+id/submit_recharge"
+                        android:layout_alignStart="@+id/submit_recharge"
+                        android:layout_below="@+id/submit_recharge"
+                        android:layout_marginTop="10dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/indexbuttonselector_"
+                        android:text="转账"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

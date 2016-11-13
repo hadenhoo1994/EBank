@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ae65be9c">
+    <!-- 顶栏 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#383737"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="#FFF"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </LinearLayout>
+    </LinearLayout>
+    <!-- body-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_margin="10dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:shrinkColumns="0,1,2"
+            android:stretchColumns="0,1,2">
+
+            <TableRow
+                android:layout_margin="10dp">
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:inputType="textEmailAddress"
+
+                    android:text="手机:"
+                    android:textSize="20dp"
+                    />
+                <EditText
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="phone"
+                    android:hint="请输入您预留的手机号码"></EditText>
+            </TableRow>
+            <TableRow
+                android:layout_margin="10dp">
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="姓名:"
+                    android:textSize="20dp"
+                    />
+                <EditText
+                    android:id="@+id/username"
+                    android:inputType="text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:maxLength="8"
+                    android:hint="请输入持卡人真实姓名"></EditText>
+            </TableRow>
+            <TableRow
+                android:layout_margin="10dp">
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="身份证号码:"
+                    android:textSize="20dp"
+                    />
+                <EditText
+                    android:id="@+id/idCard"
+                    android:layout_width="0dp"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="请输入持卡人身份证号码"></EditText>
+            </TableRow>
+            <TableRow
+                android:layout_margin="10dp">
+                <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="银行卡号码:"
+                    android:textSize="20dp"
+                    />
+                <EditText
+                    android:id="@+id/bankCardId"
+                    android:layout_width="0dp"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="请输入银行卡号码"></EditText>
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:id="@+id/next"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:text="下一步"
+                    android:layout_span="2"
+                    />
+            </TableRow>
+
+
+        </TableLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

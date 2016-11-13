@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/indexbackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/logolayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/edituser"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:hint="手机号"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="#FFF"
+                android:textColorHint="#c1bdbd"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/edpassword"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignEnd="@+id/edituser"
+                android:layout_alignLeft="@+id/edituser"
+                android:layout_alignRight="@+id/edituser"
+                android:layout_alignStart="@+id/edituser"
+                android:layout_below="@+id/edituser"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:hint="登录密码"
+                android:password="true"
+                android:singleLine="true"
+                android:textColor="#FFF"
+                android:textColorHint="#c1bdbd"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/signin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignEnd="@+id/edpassword"
+                android:layout_alignLeft="@+id/edpassword"
+                android:layout_alignRight="@+id/edpassword"
+                android:layout_alignStart="@+id/edpassword"
+                android:layout_below="@+id/edpassword"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/indexbuttonselector_"
+                android:text="登录"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="-- 注册新用户 --"
+                android:textColor="#dcd9d9"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/forgotpw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="27dp"
+                android:text="忘记密码?"
+                android:textColor="#dcd6d6"
+                android:textSize="17dp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
