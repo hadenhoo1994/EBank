@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.ebank.com.ebank.R;
+import app.ebank.com.ebank.model.MD5;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -68,8 +69,11 @@ public class Index_activity extends Activity {
                 String eduser = editUser.getText().toString().trim();
                 String edpsw = edPassWord.getText().toString().trim();
                 BmobUser bu = new BmobUser();
-                bu.setPassword(edpsw);
+                //添加md5加密 将输入的密码加密再进行匹配
+                MD5 md5 = new MD5();
+                String  encipheredpsw = md5.getMD5ofStr(edpsw);
                 bu.setUsername(eduser);
+                bu.setPassword(encipheredpsw);
                 //判断邮箱和密码都不能为空
                 if (edpsw != null && eduser != null) {
                     bu.login(new SaveListener<BmobUser>() {

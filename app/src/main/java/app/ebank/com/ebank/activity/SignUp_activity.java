@@ -96,8 +96,6 @@ public class SignUp_activity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
                 }
-
-
                 break;
 
         }
@@ -108,67 +106,13 @@ public class SignUp_activity extends Activity implements View.OnClickListener {
         // Toast.makeText(SignUp_activity.this, name+","+password+"," +password2+",", Toast.LENGTH_SHORT).show();
         final Intent intent = getIntent();
         final String phoneNumber = intent.getExtras().getString("phoneNumber");
-//        //在user表创一个新的用户行
-//        BmobUser bmobUser = new BmobUser();
-//        bmobUser.setUsername(phoneNumber);
-//        bmobUser.setPassword(password);
-//        bmobUser.setMobilePhoneNumber(phoneNumber);
-//        bmobUser.signUp(new SaveListener<BmobUser>() {
-//            @Override
-//            public void done(BmobUser s, BmobException e) {
-//                if(e==null){
-//                    Intent intent = new Intent();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("phoneNumber", phoneNumber);
-                                bundle.putString("password",password);
-                                intent.setClass(SignUp_activity.this, ToSetBuyPsw.class);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                                finish();
-//                }else{
-//                    Toast.makeText(SignUp_activity.this, "用户已存在,请登录"+e, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-//        BmobQuery<UserMsg> query = new BmobQuery<UserMsg>();
-//        query.addWhereEqualTo("username", phoneNumber);
-//        query.findObjects(new FindListener<UserMsg>() {
-//            @Override
-//            public void done(List<UserMsg> list, BmobException e) {
-//                if (e == null) {
-//                    //获取用户成功
-//                    UserMsg user = list.get(0);
-//                    //设置密码
-//                    UserMsg userMsg = new UserMsg();
-//                    userMsg.setPassword(password);
-//                    //更新信息
-//                    userMsg.update(user.getObjectId(), new UpdateListener() {
-//                        @Override
-//                        public void done(BmobException e) {
-//                            if (e == null) {
-//                                // 更新成功跳转
-//                                Intent intent = new Intent();
-//                                Bundle bundle = new Bundle();
-//                                bundle.putString("phoneNumber", phoneNumber);
-//                                intent.setClass(SignUp_activity.this, ToSetBuyPsw.class);
-//                                intent.putExtras(bundle);
-//                                startActivity(intent);
-//                                finish();
-//                            } else {
-//                                //更新失败
-//                                Toast.makeText(SignUp_activity.this, "信息提交失败,请检查网络是否通畅"+e, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    //获取失败
-//                    Toast.makeText(SignUp_activity.this, "设置密码失败,请检查网络是否通畅", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-
+        Bundle bundle = new Bundle();
+        bundle.putString("phoneNumber", phoneNumber);
+        bundle.putString("password", password);
+        intent.setClass(SignUp_activity.this, ToSetBuyPsw.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 
 }

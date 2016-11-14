@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.ebank.com.ebank.R;
+import app.ebank.com.ebank.model.MD5;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
@@ -73,7 +74,7 @@ public class ToSetBuyPsw2 extends Activity {
                 old = oldpassword.getText().toString().trim();
                 psw1 = set_buypsw.getText().toString().trim();
                 psw2 = set_buypsw2.getText().toString().trim();
-
+                final MD5 md5 = new MD5();
                 //查询用户并判断用户输入的旧密码是否正确
                 if (old.length() == 6) {
                     BmobUser bmobUser = BmobUser.getCurrentUser();
@@ -83,7 +84,7 @@ public class ToSetBuyPsw2 extends Activity {
                         public void done(UserMsg userMsg, BmobException e) {
                             if (e == null) {
                                 //查询成功 判断用户输入的旧密码是否正确
-                                if (userMsg.getBuyPsw().equals(old)) {
+                                if (userMsg.getBuyPsw().equals(md5.getMD5ofStr(old))) {
                                     //旧密码正确
                                     //判断两次密码输入是否相同
                                     if (psw1.equals(psw2)) {
@@ -91,7 +92,7 @@ public class ToSetBuyPsw2 extends Activity {
                                         if (psw1.toString().length() == 6) {
                                             //输入的信息都正确 修改密码信息
                                             UserMsg user = new UserMsg();
-                                            user.setBuyPsw(psw1);
+                                            user.setBuyPsw(md5.getMD5ofStr(psw1));
                                             //更新信息
                                             user.update(userMsg.getObjectId(), new UpdateListener() {
                                                 @Override

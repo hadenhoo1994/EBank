@@ -14,6 +14,7 @@ import java.util.List;
 
 import app.ebank.com.ebank.R;
 import app.ebank.com.ebank.model.Bill;
+import app.ebank.com.ebank.model.MD5;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
@@ -80,12 +81,16 @@ public class ToSetBuyPsw extends Activity {
         final Intent intent = getIntent();
         String phoneNumber = intent.getExtras().getString("phoneNumber");
         String password = intent.getExtras().getString("password");
+        //将密码和支付密码加密
+        MD5 md5 = new MD5();
+        String encipherpassword = md5.getMD5ofStr(password);
+        String encipherbuypassword = md5.getMD5ofStr(psw1);
         UserMsg userMsg = new UserMsg();
         userMsg.setUsername(phoneNumber);
-        userMsg.setPassword(password);
+        userMsg.setPassword(encipherpassword);
         userMsg.setFrozen(false);
         userMsg.setMobilePhoneNumber(phoneNumber);
-        userMsg.setBuyPsw(psw1);
+        userMsg.setBuyPsw(encipherbuypassword);
         userMsg.signUp(new SaveListener<UserMsg>() {
             @Override
             public void done(UserMsg s, BmobException e) {
