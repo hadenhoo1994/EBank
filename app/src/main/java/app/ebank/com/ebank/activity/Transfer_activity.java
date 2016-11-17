@@ -16,6 +16,7 @@ import java.util.List;
 import app.ebank.com.ebank.R;
 import app.ebank.com.ebank.model.BankCard;
 import app.ebank.com.ebank.model.Bill;
+import app.ebank.com.ebank.model.MD5;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
@@ -91,13 +92,14 @@ public class Transfer_activity extends Activity {
         @Override
         public void onClick(View v) {
             //取得支付密码输入框的值
+            MD5 md5 = new MD5();
             getbuyPsw = buypswsub.getText().toString().trim();
             //获取EditText中的数据
             tf_user = transfer_user.getText().toString().trim();
             tf_account = transfer_accounts.getText().toString().trim();
 
             //判断支付密码是否正确
-            if (getbuyPsw.equals(psw)) {
+            if (getbuyPsw.equals(md5.getMD5ofStr(psw))) {
                 //判断输入要转账的用户是否存在
                 if (isUser()) {
                     //判断余额是否足够支付
