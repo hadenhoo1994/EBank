@@ -13,11 +13,6 @@
         android:title="修改支付密码"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_Psw"
-        android:orderInCategory="100"
-        android:title="修改登录密码"
-        app:showAsAction="never"/>
-    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
     android:title="退出登录"
