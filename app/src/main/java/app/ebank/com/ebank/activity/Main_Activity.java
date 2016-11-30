@@ -126,6 +126,9 @@ public class Main_Activity extends Activity {
                         Intent i3 = new Intent(Main_Activity.this, ToSetBuyPsw2.class);
                         startActivity(i3);
                         break;
+                    case R.id.action_Psw:       //跳转到登录密码设置
+                        break;
+
                     case R.id.action_logout:    //退出登录
                         BmobUser.logOut();   //清除缓存用户对象
                         BmobUser currentUser = BmobUser.getCurrentUser(); // 现在的currentUser是null了

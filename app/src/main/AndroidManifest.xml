@@ -77,12 +77,13 @@
 
         <activity android:name=".activity.Transfer_activity" />
 
-        <activity android:name=".activity.Recharge_activity" />
-
         <activity android:name=".activity.ForgetPsw_activity" />
 
         <activity android:name=".activity.CheckData" />
+
         <activity android:name=".activity.ToSetBuyPsw2"></activity>
+
+
 
     </application>
 

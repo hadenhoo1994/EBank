@@ -51,13 +51,7 @@ public class Index_activity extends Activity {
         edPassWord = (EditText) findViewById(R.id.edpassword);
         forgetPsw = (TextView) findViewById(R.id.forgotpw);
         signUp = (TextView) findViewById(R.id.signup);
-//        signIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Index_activity.this,Main_Activity.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
 
         /**

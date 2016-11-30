@@ -76,27 +76,26 @@ public class ToSetBuyPsw extends Activity {
         });
     }
 
-    //设置支付密码
+    //设置支付密码和登录密码
     private void setBuyPsw() {
         final Intent intent = getIntent();
         String phoneNumber = intent.getExtras().getString("phoneNumber");
         String password = intent.getExtras().getString("password");
-        //将密码和支付密码加密
         MD5 md5 = new MD5();
-        String encipherpassword = md5.getMD5ofStr(password);
-        String encipherbuypassword = md5.getMD5ofStr(psw1);
+        //加密登录密码
+        String lockPsw = md5.getMD5ofStr(password);
         UserMsg userMsg = new UserMsg();
         userMsg.setUsername(phoneNumber);
-        userMsg.setPassword(encipherpassword);
+        userMsg.setPassword(lockPsw);
         userMsg.setFrozen(false);
         userMsg.setMobilePhoneNumber(phoneNumber);
-        userMsg.setBuyPsw(encipherbuypassword);
+        userMsg.setBuyPsw(psw1);
         userMsg.signUp(new SaveListener<UserMsg>() {
             @Override
             public void done(UserMsg s, BmobException e) {
-                if (e == null) {
-                    Intent intent1 = new Intent(ToSetBuyPsw.this, Index_activity.class);
-                    startActivity(intent1);
+               if (e == null) {
+//                    Intent intent1 = new Intent(ToSetBuyPsw.this, Index_activity.class);
+//                    startActivity(intent1);
                     Toast.makeText(ToSetBuyPsw.this, "注册成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {

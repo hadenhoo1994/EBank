@@ -92,38 +92,16 @@ public class Gerenxinxi_activity extends Activity {
                                 } else {
                                     userTypetext.setText("正常");
                                 }
+                            }else{
+                                Toast.makeText(Gerenxinxi_activity.this, "状态异常" + e, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }else {
-                    Toast.makeText(Gerenxinxi_activity.this, "用户信息获取失败,请检查网络是否连接" + e, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Gerenxinxi_activity.this, "用户信息获取失败,请检查网络是否连接", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        final BmobQuery<UserMsg> query = new BmobQuery<UserMsg>();
-//        query.getObject(user.getObjectId(), new QueryListener<UserMsg>() {
-//            @Override
-//            public void done(UserMsg userMsg, BmobException e) {
-//                if (e == null) {
-//                    //设置信息
-//                    zhanghaotext.setText(userMsg.getUsername());
-//                    trueNametext.setText(userMsg.getTrueName());
-//                    bankCardtext.setText(userMsg.getBankCard());
-//                    idCardtext.setText(userMsg.getIdCard());
-//                    phoneNumbertext.setText(userMsg.getMobilePhoneNumber());
-//                    addresstext.setText(userMsg.getAddress());
-//                    //判断用户状态显示不同状态信息
-//                    if (userMsg.getFrozen() == true) {
-//                        userTypetext.setText("冻结状态");
-//                    } else {
-//                        userTypetext.setText("正常");
-//                    }
-//                } else {
-//                    Toast.makeText(Gerenxinxi_activity.this, "用户信息获取失败,请检查网络是否连接" + e, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
 
     }
 

@@ -91,15 +91,13 @@ public class Transfer_activity extends Activity {
 
         @Override
         public void onClick(View v) {
-            //取得支付密码输入框的值
-            MD5 md5 = new MD5();
             getbuyPsw = buypswsub.getText().toString().trim();
             //获取EditText中的数据
             tf_user = transfer_user.getText().toString().trim();
             tf_account = transfer_accounts.getText().toString().trim();
 
             //判断支付密码是否正确
-            if (getbuyPsw.equals(md5.getMD5ofStr(psw))) {
+            if (getbuyPsw.equals(psw)) {
                 //判断输入要转账的用户是否存在
                 if (isUser()) {
                     //判断余额是否足够支付
@@ -281,34 +279,6 @@ public class Transfer_activity extends Activity {
                 }
             }
         });
-//        //通过输入的用户名来查找用户
-//        final BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-//        query.addWhereEqualTo("username", tf_user);
-//        //查询
-//        query.findObjects(new FindListener<BmobUser>() {
-//            @Override
-//            public void done(List<BmobUser> list, final BmobException e) {
-//                if (e == null) {
-//                    //添加收入情况到账单
-//                    BmobUser user = list.get(0);
-//                    Bill bill = new Bill();
-//                    bill.setMoney(tf_account);
-//                    bill.setType("收入");
-//                    bill.setUsername(user.getUsername());
-//                    bill.save(new SaveListener<String>() {
-//                        @Override
-//                        public void done(String s, BmobException e) {
-//                            if (e == null) {
-//                                Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                }
-//            }
-//        });
     }
 }
 
