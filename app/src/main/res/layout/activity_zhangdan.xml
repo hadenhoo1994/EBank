@@ -110,6 +110,12 @@
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:text="金额"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:text="余额"/>
         </LinearLayout>
     </RelativeLayout>
 

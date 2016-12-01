@@ -55,8 +55,8 @@ public class ZhangDan_activity extends Activity {
             @Override
             public void onClick(View v) {
                 SimpleAdapter adapter = new SimpleAdapter(ZhangDan_activity.this, data, R.layout.zhangdanlist_item,
-                        new String[]{"zhangdan_time", "zhangdan_type", "zhangdan_sum"},
-                        new int[]{R.id.zhangdan_time, R.id.zhangdan_type, R.id.zhangdan_sum});
+                        new String[]{"zhangdan_time", "zhangdan_type", "zhangdan_sum","zhangdan_balance"},
+                        new int[]{R.id.zhangdan_time, R.id.zhangdan_type, R.id.zhangdan_sum,R.id.zhangdan_balance});
                 listView.setAdapter(adapter);
             }
         });
@@ -81,6 +81,7 @@ public class ZhangDan_activity extends Activity {
                         item.put("zhangdan_time", bill.getCreatedAt());
                         item.put("zhangdan_type", bill.getType());
                         item.put("zhangdan_sum", bill.getMoney());
+                        item.put("zhangdan_balance",bill.getBalance());
                         data.add(item);
 
                     }

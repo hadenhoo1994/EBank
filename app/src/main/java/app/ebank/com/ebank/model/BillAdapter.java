@@ -33,9 +33,11 @@ public class BillAdapter extends ArrayAdapter<Bill> {
         TextView zhangdan_time = (TextView) view.findViewById(R.id.zhangdan_time);
         TextView zhangdan_type = (TextView) view.findViewById(R.id.zhangdan_type);
         TextView zhangdan_sum = (TextView) view.findViewById(R.id.zhangdan_sum);
+        TextView zhangdan_balance = (TextView) view.findViewById(R.id.zhangdan_balance);
         zhangdan_time.setText(bill.getTime().toString());
         zhangdan_type.setText(bill.getType());
         zhangdan_sum.setText(bill.getMoney());
+        zhangdan_balance.setText(bill.getMoney());
         return view;
     }
 }

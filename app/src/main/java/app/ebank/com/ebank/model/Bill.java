@@ -12,9 +12,17 @@ import cn.bmob.v3.BmobUser;
 public class Bill extends BmobObject {
     private String type;    //账单种类     true为支出 false为收入
     private String money;   //金额
+    private String balance; //余额
     private String username;  //账单所属用户
     private Date time;    //表的创建时间
 
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
 
     public String getType() {
         return type;

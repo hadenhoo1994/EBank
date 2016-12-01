@@ -134,10 +134,10 @@ public class Transfer_activity extends Activity {
 
                     }
                 } else {
-                    Toast.makeText(Transfer_activity.this, "网络异常,请重试", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Transfer_activity.this, "余额不足或网络异常", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(Transfer_activity.this, "网络异常,请重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Transfer_activity.this, "用户名不正确或网络异常", Toast.LENGTH_SHORT).show();
             }
             //Toast.makeText(Transfer_activity.this,i,Toast.LENGTH_SHORT).show();
 
@@ -298,38 +298,68 @@ public class Transfer_activity extends Activity {
      * 添加支出情况到账单
      */
     private void addExpenditure() {
-        Bill bill = new Bill();
-        bill.setMoney(tf_account);
-        bill.setType("支出");
-        bill.setUsername(BmobUser.getCurrentUser().getUsername());
-        bill.save(new SaveListener<String>() {
+        //查询余额
+        BmobUser user = BmobUser.getCurrentUser();
+        BmobQuery<BankCard> query = new BmobQuery<BankCard>();
+        query.addWhereEqualTo("phoneNumber", user.getUsername());
+        query.findObjects(new FindListener<BankCard>() {
             @Override
-            public void done(String s, BmobException e) {
+            public void done(List<BankCard> list, BmobException e) {
+                //查询成功
                 if (e == null) {
-                } else {
+                    BankCard bankCard = list.get(0);
+                    //添加信息
+                    Bill bill = new Bill();
+                    bill.setMoney(tf_account);
+                    bill.setType("支出");
+                    bill.setBalance(bankCard.getBalance().toString());
+                    bill.setUsername(BmobUser.getCurrentUser().getUsername());
+                    bill.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null) {
+                            } else {
+                            }
+                        }
+                    });
                 }
             }
         });
+
     }
 
     /**
      * 添加收入情况到账单
      */
     private void addIncomeBill() {
-        Bill bill = new Bill();
-        bill.setUsername(tf_user);
-        bill.setMoney(tf_account);
-        bill.setType("收入");
-        bill.save(new SaveListener<String>() {
+        //查询被转账方余额
+        BmobQuery<BankCard> query = new BmobQuery<BankCard>();
+        query.addWhereEqualTo("phoneNumber", tf_user);
+        query.findObjects(new FindListener<BankCard>() {
             @Override
-            public void done(String s, BmobException e) {
+            public void done(List<BankCard> list, BmobException e) {
+                //查询成功
                 if (e == null) {
-                    Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
+                    BankCard bankCard = list.get(0);
+                    Bill bill = new Bill();
+                    bill.setUsername(tf_user);
+                    bill.setMoney(tf_account);
+                    bill.setBalance(bankCard.getBalance().toString());
+                    bill.setType("收入");
+                    bill.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
+
     }
 }
 

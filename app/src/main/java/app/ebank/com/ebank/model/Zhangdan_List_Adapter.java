@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import app.ebank.com.ebank.R;
 
 /**
@@ -28,6 +30,7 @@ public class Zhangdan_List_Adapter extends ArrayAdapter<Zhangdan> {
         TextView zhangdan_time = (TextView) view.findViewById(R.id.zhangdan_time);
         TextView zhangdan_type = (TextView) view.findViewById(R.id.zhangdan_type);
         TextView zhangdan_sum = (TextView) view.findViewById(R.id.zhangdan_sum);
+        TextView zhangdan_balance = (TextView) view.findViewById(R.id.zhangdan_balance);
         return view;
 
     }

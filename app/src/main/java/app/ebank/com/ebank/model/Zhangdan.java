@@ -11,10 +11,13 @@ public class Zhangdan {
 
     private String zhangdan_sum;
 
-    public Zhangdan(String zhagndan_time, String zhangdan_type, String zhangdan_sum){
+    private String zhangdan_balance;
+
+    public Zhangdan(String zhagndan_time, String zhangdan_type, String zhangdan_sum,String zhangdan_balance){
         this.zhangdan_time = zhagndan_time;
         this.zhangdan_type = zhangdan_type;
         this.zhangdan_sum = zhangdan_sum;
+        this.zhangdan_balance = zhangdan_balance;
     }
 
     public String getZhangdan_time(){
@@ -27,5 +30,9 @@ public class Zhangdan {
 
     public String getZhangdan_sum(){
         return zhangdan_sum;
+    }
+
+    public String getZhangdan_balance(){
+        return zhangdan_balance;
     }
 }
