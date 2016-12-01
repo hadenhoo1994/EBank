@@ -136,11 +136,25 @@ public class Main_Activity extends Activity {
                         startActivity(i3);
                         break;
 
-                    case R.id.action_connectManager:
-                        Intent i4  = new Intent(Main_Activity.this,SetEmail_activity.class);
-                        startActivity(i4);
+                    case R.id.action_connectManager:    //设置邮箱验证
+                        //判断邮箱是否已注册
+                        BmobUser bmobUser = BmobUser.getCurrentUser();
+                        if (bmobUser.getEmailVerified()){
+                            //已绑定
+                            new AlertDialog.Builder(Main_Activity.this)
+                                    .setTitle("提示")
+                                    .setMessage("您已绑定邮箱"+bmobUser.getEmail())
+                                    .setPositiveButton("确定",null)
+                                    .setNegativeButton("取消",null)
+                                    .show();
+                        }else{
+                            //未绑定
+                            Intent i4  = new Intent(Main_Activity.this,SetEmail_activity.class);
+                            startActivity(i4);
+                        }
+
                         break;
-                    case R.id.action_forgetPsw:
+                    case R.id.action_forgetPsw:         //跳转到修改密码
                         Intent i5  = new Intent(Main_Activity.this,FindLoginPsw.class);
                         startActivity(i5);
                         break;

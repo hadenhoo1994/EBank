@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="邮箱验证"
+                android:text="修改密码"
                 android:textColor="#FFF"
                 android:textSize="30dp" />
         </LinearLayout>
