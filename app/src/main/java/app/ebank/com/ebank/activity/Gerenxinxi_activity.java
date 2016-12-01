@@ -37,6 +37,7 @@ public class Gerenxinxi_activity extends Activity {
     private TextView idCardtext;    //绑定的身份证卡号
     private TextView phoneNumbertext;   //手机号码
     private TextView addresstext;       //住址
+    private TextView eamilText;         //邮箱
     private Button back;
 
     @Override
@@ -61,6 +62,7 @@ public class Gerenxinxi_activity extends Activity {
         userTypetext = (TextView) findViewById(R.id.userTypetext);
         bankCardtext = (TextView) findViewById(R.id.bankCardtext);
         addresstext = (TextView) findViewById(R.id.addresstext);
+        eamilText = (TextView) findViewById(R.id.emailText);
 
         //显示信息
         //获取本地用户的objectId来获取user表内的信息
@@ -78,6 +80,9 @@ public class Gerenxinxi_activity extends Activity {
                     trueNametext.setText(bankCard.getUsername());
                     bankCardtext.setText(bankCard.getBankCard());
                     addresstext.setText(bankCard.getAddress());
+
+
+
                     //判断用户状态显示不同状态信息
                     BmobQuery<UserMsg> query1 = new BmobQuery<UserMsg>();
                     query1.addWhereEqualTo("username",bankCard.getPhoneNumber());
@@ -86,6 +91,14 @@ public class Gerenxinxi_activity extends Activity {
                         public void done(List<UserMsg> list, BmobException e) {
                             if (e ==null){
                                 UserMsg userMsg = list.get(0);
+
+                                //邮箱信息
+                                if (userMsg.getEmailVerified()!=null && userMsg.getEmailVerified()!=false){
+                                    eamilText.setText(user.getEmail());
+                                }else{
+                                    eamilText.setText("未绑定邮箱");
+                                }
+
                                 //判断用户状态显示不同状态信息
                                 if (userMsg.getFrozen() == true) {
                                     userTypetext.setText("冻结状态");

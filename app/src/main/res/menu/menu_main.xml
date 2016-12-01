@@ -15,8 +15,15 @@
     <item
         android:id="@+id/action_connectManager"
         android:orderInCategory="100"
-        android:title="联系管理员"
+        android:title="设置邮箱"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_forgetPsw"
+        android:orderInCategory="100"
+        android:title="修改及找回密码"
+        app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"

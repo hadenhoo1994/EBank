@@ -80,6 +80,8 @@
         <activity android:name=".activity.ForgetPsw_activity" />
 
         <activity android:name=".activity.CheckData" />
+        <activity android:name=".activity.SetEmail_activity"/>
+        <activity android:name=".activity.FindLoginPsw"/>
 
         <activity android:name=".activity.ToSetBuyPsw2"></activity>
 

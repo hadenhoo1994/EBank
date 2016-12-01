@@ -102,27 +102,37 @@ public class CheckData extends Activity {
                         BankCard bankCard = list.get(0);
                         //对比输入的数据和表的数据是否相同
                         //判断用户名是否匹配
-                        if (bankCard.getUsername().equals(userNameGet)) {
-                            //判断身份证号码是否匹配
-                            if (bankCard.getIdCard().equals(idCardGet)){
-                                //判断银行卡信息是否正确
-                                if (bankCard.getBankCard().equals(bankCardIdGet)){
-                                    //所有信息正确 跳转到signUp界面设置密码和支付密码
-                                                Intent intent = new Intent();
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("phoneNumber", phoneNumberGet);
-                                                intent.setClass(CheckData.this, SignUp_activity.class);
-                                                intent.putExtras(bundle);
-                                                startActivity(intent);
-                                                finish();
-                                }else{
-                                    Toast.makeText(CheckData.this, "银行卡信息有误,请确认信息", Toast.LENGTH_SHORT).show();
+                        try {
+                            if (IdCard.IDCardValidate(idCardGet)) {
+
+
+                                if (bankCard.getUsername().equals(userNameGet)) {
+                                    //判断身份证号码是否匹配
+                                    if (bankCard.getIdCard().equals(idCardGet)) {
+                                        //判断银行卡信息是否正确
+                                        if (bankCard.getBankCard().equals(bankCardIdGet)) {
+                                            //所有信息正确 跳转到signUp界面设置密码和支付密码
+                                            Intent intent = new Intent();
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("phoneNumber", phoneNumberGet);
+                                            intent.setClass(CheckData.this, SignUp_activity.class);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(CheckData.this, "银行卡信息有误,请确认信息", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(CheckData.this, "身份证信息有误,请确认信息", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(CheckData.this, "用户名信息有误,请确认信息", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
-                                Toast.makeText(CheckData.this, "身份证信息有误,请确认信息", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CheckData.this, "身份证格式不正确", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(CheckData.this, "用户名信息有误,请确认信息", Toast.LENGTH_SHORT).show();
+                        } catch (ParseException e1) {
+                            Toast.makeText(CheckData.this, "身份证有误", Toast.LENGTH_SHORT).show();
                         }
 //                        String s = "真实姓名:" + bankCard.getUsername() + "身份证号码" + bankCard.getIdCard();
 //                        Toast.makeText(CheckData.this, s, Toast.LENGTH_SHORT).show();

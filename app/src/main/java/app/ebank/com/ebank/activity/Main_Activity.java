@@ -137,9 +137,14 @@ public class Main_Activity extends Activity {
                         break;
 
                     case R.id.action_connectManager:
-                        Intent i4  = new Intent(Main_Activity.this,ForgetPsw_activity.class);
+                        Intent i4  = new Intent(Main_Activity.this,SetEmail_activity.class);
                         startActivity(i4);
                         break;
+                    case R.id.action_forgetPsw:
+                        Intent i5  = new Intent(Main_Activity.this,FindLoginPsw.class);
+                        startActivity(i5);
+                        break;
+
 
                     case R.id.action_logout:    //退出登录
                         BmobUser.logOut();   //清除缓存用户对象

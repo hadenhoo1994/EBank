@@ -1,7 +1,6 @@
 package app.ebank.com.ebank.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,19 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 import app.ebank.com.ebank.R;
-import app.ebank.com.ebank.model.Bill;
-import app.ebank.com.ebank.model.MD5;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by Haden on 2016/10/3.
@@ -81,12 +72,10 @@ public class ToSetBuyPsw extends Activity {
         final Intent intent = getIntent();
         String phoneNumber = intent.getExtras().getString("phoneNumber");
         String password = intent.getExtras().getString("password");
-        MD5 md5 = new MD5();
         //加密登录密码
-        String lockPsw = md5.getMD5ofStr(password);
         UserMsg userMsg = new UserMsg();
         userMsg.setUsername(phoneNumber);
-        userMsg.setPassword(lockPsw);
+        userMsg.setPassword(password);
         userMsg.setFrozen(false);
         userMsg.setMobilePhoneNumber(phoneNumber);
         userMsg.setBuyPsw(psw1);
@@ -94,8 +83,6 @@ public class ToSetBuyPsw extends Activity {
             @Override
             public void done(UserMsg s, BmobException e) {
                if (e == null) {
-//                    Intent intent1 = new Intent(ToSetBuyPsw.this, Index_activity.class);
-//                    startActivity(intent1);
                     Toast.makeText(ToSetBuyPsw.this, "注册成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {

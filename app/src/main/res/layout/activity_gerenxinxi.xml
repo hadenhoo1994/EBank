@@ -198,8 +198,32 @@
                             android:text="住址："
                             android:textSize="20dp" />
 
+
                         <TextView
                             android:id="@+id/addresstext"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:paddingTop="20dp"
+                            android:text=""
+                            android:textSize="20dp" />
+
+                    </TableRow>
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingTop="20dp"
+                            android:text="邮箱："
+                            android:textSize="20dp" />
+
+
+                        <TextView
+                            android:id="@+id/emailText"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"

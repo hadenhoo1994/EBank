@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.ebank.com.ebank.R;
-import app.ebank.com.ebank.model.MD5;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
