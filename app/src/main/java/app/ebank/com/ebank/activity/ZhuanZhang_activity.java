@@ -2,6 +2,7 @@ package app.ebank.com.ebank.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -54,13 +55,38 @@ public class ZhuanZhang_activity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.transfer_account:
-                    Intent intent1 = new Intent();
-                    intent1.setClass(ZhuanZhang_activity.this, Transfer_activity.class);
-                    startActivity(intent1);
-                    finish();
+                    //判断用户是否冻结
+                    final BmobUser user =BmobUser.getCurrentUser();
+                    BmobQuery<UserMsg> query = new BmobQuery<UserMsg>();
+                    query.getObject(user.getObjectId(), new QueryListener<UserMsg>() {
+                        @Override
+                        public void done(UserMsg userMsg, BmobException e) {
+                            if (e ==null){
+                                //判断用户是否是冻结的状态
+                                if (userMsg.getFrozen()){
+                                    new AlertDialog.Builder(ZhuanZhang_activity.this)
+                                            .setTitle("支付密码错误")
+                                            .setMessage("该用户已被冻结,无法进行转账交易,请联系管理员解冻")
+                                            .setPositiveButton("确定", null)
+                                            .show();
+                                }else{
+                                    Intent intent1 = new Intent();
+                                    intent1.setClass(ZhuanZhang_activity.this, Transfer_activity.class);
+                                    startActivity(intent1);
+                                    finish();
+                                }
+                            }else{
+                                Toast.makeText(ZhuanZhang_activity.this, "网络有误", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+
+                    });
+
+
                     break;
                 case R.id.recharge:
-                    Toast.makeText(ZhuanZhang_activity.this,"功能尚未推出,敬请期待",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ZhuanZhang_activity.this, "功能尚未推出,敬请期待", Toast.LENGTH_SHORT).show();
                     break;
             }
         }

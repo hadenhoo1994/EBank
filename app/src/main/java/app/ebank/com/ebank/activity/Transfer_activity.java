@@ -1,6 +1,8 @@
 package app.ebank.com.ebank.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +47,7 @@ public class Transfer_activity extends Activity {
     private EditText buypswsub;     //支付密码输入框
     private static String getbuyPsw;   //输入的支付密码
     private static String psw;             //支付密码
+    private static int count = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class Transfer_activity extends Activity {
         setContentView(R.layout.activity_transfer);
         //      第一：默认初始化Bmob
         Bmob.initialize(this, "34bf3494f1223137a33e3c73d6be754b");
+        count = 4;
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,27 +99,77 @@ public class Transfer_activity extends Activity {
             //获取EditText中的数据
             tf_user = transfer_user.getText().toString().trim();
             tf_account = transfer_accounts.getText().toString().trim();
-
-            //判断支付密码是否正确
-            if (getbuyPsw.equals(psw)) {
-                //判断输入要转账的用户是否存在
-                if (isUser()) {
-                    //判断余额是否足够支付
-                    if (isEnoughBalance()) {
-                        //Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
+            boolean f1 = isUser();
+            if (f1) {
+                //判断余额是否足够支付
+                boolean f2 = isEnoughBalance();
+                if (f2) {
+                    //Toast.makeText(Transfer_activity.this, "转账成功", Toast.LENGTH_SHORT).show();
+                    if (getbuyPsw.equals(psw)) {
+                        //判断输入要转账的用户是否存在
                         transferTo();
                     } else {
-                        Toast.makeText(Transfer_activity.this, "网络有误,请重试", Toast.LENGTH_SHORT).show();
+                        count--;
+                        if (count>0){
+                            new AlertDialog.Builder(Transfer_activity.this)
+                                    .setTitle("支付密码错误")
+                                    .setMessage("支付密码错误,再输入错误" + count + "次将冻结此账号")
+                                    .setPositiveButton("确定", fullCount())
+                                    .show();
+                        }else{
+                            if (count < 1) {
+                                //设置用户为冻结状态
+                                BmobUser user = BmobUser.getCurrentUser();
+                                UserMsg userMsg = new UserMsg();
+                                userMsg.setFrozen(true);
+                                userMsg.update(user.getObjectId(), new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
+                                            Toast.makeText(Transfer_activity.this, "支付密码错误次数过多,账号冻结", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        } else {
+                                            Toast.makeText(Transfer_activity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+
                     }
                 } else {
-                    Toast.makeText(Transfer_activity.this, "网络有误,请重试", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Transfer_activity.this, "网络异常,请重试", Toast.LENGTH_SHORT).show();
                 }
-                //Toast.makeText(Transfer_activity.this,i,Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(Transfer_activity.this, "支付密码错误,请重新输入", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Transfer_activity.this, "网络异常,请重试", Toast.LENGTH_SHORT).show();
             }
+            //Toast.makeText(Transfer_activity.this,i,Toast.LENGTH_SHORT).show();
 
 
+        }
+
+        //判断输入密码错误次数
+        private DialogInterface.OnClickListener fullCount() {
+            if (count < 1) {
+                //设置用户为冻结状态
+                BmobUser user = BmobUser.getCurrentUser();
+                UserMsg userMsg = new UserMsg();
+                userMsg.setFrozen(true);
+                userMsg.update(user.getObjectId(), new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            Toast.makeText(Transfer_activity.this, "支付密码错误次数过多,账号冻结", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(Transfer_activity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+            return null;
         }
     }
 
@@ -156,20 +210,21 @@ public class Transfer_activity extends Activity {
                                                                               // Toast.makeText(Transfer_activity.this, "进来了", Toast.LENGTH_SHORT).show();
                                                                               addIncomeBill();
                                                                               addExpenditure();
+                                                                              count = 0;
                                                                               finish();
                                                                           } else {
-                                                                              Toast.makeText(Transfer_activity.this, "信息更新失败,请检查网络是否正常" + e, Toast.LENGTH_SHORT).show();
+                                                                              Toast.makeText(Transfer_activity.this, "信息更新失败,请检查网络是否正常", Toast.LENGTH_SHORT).show();
                                                                           }
                                                                       }
                                                                   });
 //
                                                               } else {
-                                                                  Toast.makeText(Transfer_activity.this, "信息获取失败,请检查网络是否正常" + e, Toast.LENGTH_SHORT).show();
+                                                                  Toast.makeText(Transfer_activity.this, "信息获取失败,请检查网络是否正常", Toast.LENGTH_SHORT).show();
                                                               }
                                                           }
                                                       });
                                                   } else {
-                                                      Toast.makeText(Transfer_activity.this, "信息查询失败,请检查网络是否正常" + e, Toast.LENGTH_SHORT).show();
+                                                      Toast.makeText(Transfer_activity.this, "信息查询失败,请检查网络是否正常", Toast.LENGTH_SHORT).show();
                                                   }
                                               }
                                           });
@@ -205,6 +260,7 @@ public class Transfer_activity extends Activity {
                         flag_balance = true;
                     } else {
                         flag_balance = false;
+
                     }
                 } else {
                     Toast.makeText(Transfer_activity.this, "余额获取失败,请检查网络是否正常", Toast.LENGTH_SHORT).show();

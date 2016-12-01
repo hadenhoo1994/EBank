@@ -1,6 +1,7 @@
 package app.ebank.com.ebank.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.INotificationSideChannel;
@@ -12,16 +13,20 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import app.ebank.com.ebank.R;
 import app.ebank.com.ebank.model.BankCard;
 import app.ebank.com.ebank.model.UserMsg;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobRealTimeData;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.ValueEventListener;
 
 /**
  * Created by Haden on 2016/9/10.
@@ -71,7 +76,11 @@ public class Main_Activity extends Activity {
         zhuanzhang.setOnClickListener(new ButtonListener());
         zhangdan.setOnClickListener(new ButtonListener());
         seting.setOnClickListener(new ButtonListener());
+
+
     }
+
+
 
     //监听点击了那个模块
     private class ButtonListener implements View.OnClickListener {
@@ -126,7 +135,10 @@ public class Main_Activity extends Activity {
                         Intent i3 = new Intent(Main_Activity.this, ToSetBuyPsw2.class);
                         startActivity(i3);
                         break;
-                    case R.id.action_Psw:       //跳转到登录密码设置
+
+                    case R.id.action_connectManager:
+                        Intent i4  = new Intent(Main_Activity.this,ForgetPsw_activity.class);
+                        startActivity(i4);
                         break;
 
                     case R.id.action_logout:    //退出登录
@@ -139,13 +151,6 @@ public class Main_Activity extends Activity {
                 return false;
             }
         });
-        // PopupMenu关闭事件
-//                popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
-//                    @Override
-//                    public void onDismiss(PopupMenu menu) {
-//                        Toast.makeText(getApplicationContext(), "关闭PopupMenu", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
 
         popupMenu.show();
     }

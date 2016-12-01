@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="忘记密码"
+                android:text="联系管理员"
                 android:textColor="#FFF"
                 android:textSize="30dp" />
         </LinearLayout>
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请联系客服:"
+        android:text="请联系管理员:"
         android:textSize="40dp"
         android:id="@+id/textView"
         android:layout_below="@+id/linearLayout"
