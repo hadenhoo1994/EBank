@@ -57,7 +57,7 @@ public class Main_Activity extends Activity {
 
 
 //        //显示用户名到标题
-        final BmobUser user0 =BmobUser.getCurrentUser();
+        final BmobUser user0 = BmobUser.getCurrentUser();
         BmobQuery<BankCard> query0 = new BmobQuery<BankCard>();
         query0.addWhereEqualTo("phoneNumber", user0.getUsername());
         query0.findObjects(new FindListener<BankCard>() {
@@ -79,7 +79,6 @@ public class Main_Activity extends Activity {
 
 
     }
-
 
 
     //监听点击了那个模块
@@ -120,7 +119,7 @@ public class Main_Activity extends Activity {
         PopupMenu popupMenu = new PopupMenu(Main_Activity.this, seting);
 
         // menu布局
-            popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
         // menu的item点击事件
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -138,24 +137,32 @@ public class Main_Activity extends Activity {
 
                     case R.id.action_connectManager:    //设置邮箱验证
                         //判断邮箱是否已注册
+
                         BmobUser bmobUser = BmobUser.getCurrentUser();
-                        if (bmobUser.getEmailVerified()){
-                            //已绑定
-                            new AlertDialog.Builder(Main_Activity.this)
-                                    .setTitle("提示")
-                                    .setMessage("您已绑定邮箱"+bmobUser.getEmail())
-                                    .setPositiveButton("确定",null)
-                                    .setNegativeButton("取消",null)
-                                    .show();
-                        }else{
+
+                        if (bmobUser.getEmailVerified()!=null)
+                            if (bmobUser.getEmailVerified()) {
+                                //已绑定
+                                new AlertDialog.Builder(Main_Activity.this)
+                                        .setTitle("提示")
+                                        .setMessage("您已绑定邮箱" + bmobUser.getEmail())
+                                        .setPositiveButton("确定", null)
+                                        .setNegativeButton("取消", null)
+                                        .show();
+                            } else {
+                                //未绑定
+                                Intent i4 = new Intent(Main_Activity.this, SetEmail_activity.class);
+                                startActivity(i4);
+                            }else{
                             //未绑定
-                            Intent i4  = new Intent(Main_Activity.this,SetEmail_activity.class);
+                            Intent i4 = new Intent(Main_Activity.this, SetEmail_activity.class);
                             startActivity(i4);
                         }
 
+
                         break;
                     case R.id.action_forgetPsw:         //跳转到修改密码
-                        Intent i5  = new Intent(Main_Activity.this,FindLoginPsw.class);
+                        Intent i5 = new Intent(Main_Activity.this, FindLoginPsw.class);
                         startActivity(i5);
                         break;
 
